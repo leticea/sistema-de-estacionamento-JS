@@ -6,6 +6,15 @@ function cadastraVeiculo(e) {
     var placaVeiculo = document.getElementById('placaVeiculo').value;
     var time = new Date();
 
+    if (!modeloVeiculo && !placaVeiculo) {
+        alert("Por favor, preencha os campos em branco!");
+        return false;
+
+    } if (!modeloVeiculo || !placaVeiculo) {
+        alert("Por favor, preencha os campos em branco!");
+        return false;
+    }
+
     carro = {
         modelo: modeloVeiculo,
         placa: placaVeiculo,
@@ -25,13 +34,16 @@ function cadastraVeiculo(e) {
         carros.push(carro);
         localStorage.setItem('patio2', JSON.stringify(carros));
     }
-   
+
+    document.getElementById('formulario').reset();
+
     mostrarPatio();
 
     e.preventDefault();
-}
+};
 
 function apagarVeiculo(placa) {
+    
     var carros = JSON.parse(localStorage.getItem('patio2'));
 
     for (var i = 0; i < carros.length; i++) {
@@ -42,7 +54,9 @@ function apagarVeiculo(placa) {
 
         localStorage.setItem('patio2', JSON.stringify(carros));
     }
-}
+
+    mostrarPatio();
+};
 
 function mostrarPatio() {
 
@@ -65,5 +79,4 @@ function mostrarPatio() {
         '</td><td><button class="btn btn-danger" onclick="apagarVeiculo(\''+ placa +'\')">Excluir</button>' +
         '</tr>'
     }
-}
-
+};
