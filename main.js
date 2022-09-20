@@ -31,6 +31,19 @@ function cadastraVeiculo(e) {
     e.preventDefault();
 }
 
+function apagarVeiculo(placa) {
+    var carros = JSON.parse(localStorage.getItem('patio2'));
+
+    for (var i = 0; i < carros.length; i++) {
+
+        if (carros[i].placa == placa) {
+            carros.splice(i, 1);
+        }
+
+        localStorage.setItem('patio2', JSON.stringify(carros));
+    }
+}
+
 function mostrarPatio() {
 
     var carros = JSON.parse(localStorage.getItem('patio2'));
@@ -49,8 +62,8 @@ function mostrarPatio() {
         '<tr><td>' + modelo +
         '</td><td>' + placa +
         '</td><td>' + hora + ' : ' + minutos +
+        '</td><td><button class="btn btn-danger" onclick="apagarVeiculo(\''+ placa +'\')">Excluir</button>' +
         '</tr>'
-
     }
 }
 
