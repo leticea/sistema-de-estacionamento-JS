@@ -13,7 +13,17 @@ function cadastraVeiculo(e) {
         minutos: time.getMinutes()
     }
 
-    localStorage.setItem('teste', 'Olá!');
+    console.log(carro);
+    
+    if (localStorage.getItem('patio2') === null) {
+        var carros = [];
+        carros.push(carro);
+        localStorage.setItem('patio2', JSON.stringify(carros));
+    } else {
+        var carros = JSON.parse(localStorage.getItem('patio'));
+        carros.push(carro);
+        localStorage.setItem('patio2', JSON.stringify(carros));
+    }
    
     e.preventDefault();
 }
