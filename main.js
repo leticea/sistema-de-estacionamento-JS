@@ -2,15 +2,11 @@ document.getElementById('formulario').addEventListener('submit', cadastraVeiculo
 
 function cadastraVeiculo(e) {
 
-    var modeloVeiculo = document.getElementById('modeloVeiculo').value;
-    var placaVeiculo = document.getElementById('placaVeiculo').value;
-    var time = new Date();
+    const modeloVeiculo = document.getElementById('modeloVeiculo').value;
+    const placaVeiculo = document.getElementById('placaVeiculo').value;
+    const time = new Date();
 
-    if (!modeloVeiculo && !placaVeiculo) {
-        alert("Por favor, preencha os campos em branco!");
-        return false;
-
-    } if (!modeloVeiculo || !placaVeiculo) {
+    if (!modeloVeiculo || !placaVeiculo) {
         alert("Por favor, preencha os campos em branco!");
         return false;
     }
@@ -24,13 +20,13 @@ function cadastraVeiculo(e) {
 
     if (localStorage.getItem('patio2') === null) {
 
-        var carros = [];
+        const carros = [];
         carros.push(carro);
         localStorage.setItem('patio2', JSON.stringify(carros));
 
     } else {
 
-        var carros = JSON.parse(localStorage.getItem('patio2'));
+        const carros = JSON.parse(localStorage.getItem('patio2'));
         carros.push(carro);
         localStorage.setItem('patio2', JSON.stringify(carros));
     }
@@ -44,7 +40,7 @@ function cadastraVeiculo(e) {
 
 function apagarVeiculo(placa) {
 
-    var carros = JSON.parse(localStorage.getItem('patio2'));
+    const carros = JSON.parse(localStorage.getItem('patio2'));
 
     for (var i = 0; i < carros.length; i++) {
 
@@ -60,17 +56,17 @@ function apagarVeiculo(placa) {
 
 function mostrarPatio() {
 
-    var carros = JSON.parse(localStorage.getItem('patio2'));
-    var carrosResultado = document.getElementById('resultados');
+    const carros = JSON.parse(localStorage.getItem('patio2'));
+    const carrosResultado = document.getElementById('resultados');
 
     carrosResultado.innerHTML = '';
 
     for (var i = 0; i < carros.length; i++) {
 
-        var modelo = carros[i].modelo;
-        var placa = carros[i].placa;
-        var hora = carros[i].hora;
-        var minutos = carros[i].minutos;
+        const modelo = carros[i].modelo;
+        const placa = carros[i].placa;
+        const hora = carros[i].hora;
+        const minutos = carros[i].minutos;
 
         carrosResultado.innerHTML += 
         '<tr><td>' + modelo +
